@@ -1,4 +1,4 @@
-# RegionMasterJp
+# GeoMasterJp
 Short description and motivation.
 
 ## Usage
@@ -8,7 +8,7 @@ How to use my plugin.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'region_master_jp'
+gem 'geo_master_jp'
 ```
 
 And then execute:
@@ -18,7 +18,7 @@ $ bundle
 
 Or install it yourself as:
 ```bash
-$ gem install region_master_jp
+$ gem install geo_master_jp
 ```
 
 ## Contributing

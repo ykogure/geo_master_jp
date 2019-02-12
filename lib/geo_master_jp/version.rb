@@ -1,3 +1,3 @@
-module RegionMasterJp
+module GeoMasterJp
   VERSION = '0.1.0'
 end
