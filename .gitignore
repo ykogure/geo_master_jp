@@ -1,0 +1,16 @@
+.idea
+.rvmrc
+.bundle/
+.DS_Store
+.ruby-version
+vendor/bundle
+
+log/*.log
+pkg/
+
+/test/dummy/
+# test/dummy/log/*.log
+# test/dummy/node_modules/
+# test/dummy/yarn-error.log
+# test/dummy/storage/
+# test/dummy/tmp/
