@@ -9,9 +9,9 @@ Gem::Specification.new do |spec|
   spec.version     = GeoMasterJp::VERSION
   spec.authors     = ["ykogure"]
   spec.email       = ["renkin1008@gmail.com"]
-  spec.homepage    = "TODO"
-  spec.summary     = "TODO: Summary of GeoMasterJp."
-  spec.description = "TODO: Description of GeoMasterJp."
+  spec.homepage    = "https://github.com/ykogure/geo_master_jp"
+  spec.summary     = "Summary of GeoMasterJp."
+  spec.description = "Description of GeoMasterJp."
   spec.license     = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
@@ -28,4 +28,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "rails", "~> 5.2.2"
 
   spec.add_development_dependency "mysql2"
+  spec.add_development_dependency "rubyzip"
+  spec.add_development_dependency "romaji"
+  spec.add_development_dependency "activerecord-import"
 end

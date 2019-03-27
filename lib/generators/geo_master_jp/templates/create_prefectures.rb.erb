@@ -1,0 +1,11 @@
+class CreatePrefectures < ActiveRecord::Migration<%= migration_version %>
+  def change
+    create_table :geo_master_jp_prefectures do |t|
+      t.string :code,          index: true, null: false
+      t.string :name,          index: true, null: false
+      t.string :name_kana,     index: true, null: false
+      t.string :name_alphabet, index: true, null: false
+      t.string :short_name,    index: true, null: false
+    end
+  end
+end

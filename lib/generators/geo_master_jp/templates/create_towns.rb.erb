@@ -1,0 +1,16 @@
+class CreateTowns < ActiveRecord::Migration<%= migration_version %>
+  def change
+    create_table :geo_master_jp_towns do |t|
+      t.references :geo_master_jp_prefecture, null: false, index: true, foreign_key: true
+      t.references :geo_master_jp_city,       null: false, index: true, foreign_key: true
+
+      # t.string :zip_code,                     index: true
+      t.string :code,            null: false, index: true
+      t.string :name,            null: false, index: true
+      # t.string :name_kana,                    index: true
+      # t.string :name_alphabet,                index: true
+      t.float  :latitude,                     index: true
+      t.float  :longitude,                    index: true
+    end
+  end
+end
