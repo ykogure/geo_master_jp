@@ -8,7 +8,6 @@ require 'geo_master_jp/models/station_connection'
 require 'geo_master_jp/models/version'
 
 require 'active_record'
-require 'active_support'
 require 'activerecord-import'
 
 module GeoMasterJp
