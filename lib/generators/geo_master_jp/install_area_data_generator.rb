@@ -106,7 +106,7 @@ module GeoMasterJp
         def set_city(city, row)
           city.name = row[10]
           city.name_kana = row[6]
-          city.name_alphabet = Romaji.kana2romaji(city.name_kana)
+          city.name_alphabet = ::Romaji.kana2romaji(city.name_kana)
 
           city
         end
@@ -114,7 +114,7 @@ module GeoMasterJp
         def set_town(town, row)
           town.name = row[11] + row[12]
           town.name_kana = row[7] + row[8]
-          town.name_alphabet = Romaji.kana2romaji(town.name_kana)
+          town.name_alphabet = ::Romaji.kana2romaji(town.name_kana)
           town.zip_code = row[2]
           town.deleted_at = Time.current if row[26] == '3' # 廃止
 
