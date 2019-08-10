@@ -2,11 +2,14 @@ class CreateCities < ActiveRecord::Migration<%= migration_version %>
   def change
     create_table :geo_master_jp_cities do |t|
       t.references :geo_master_jp_prefecture, null: false, index: true, foreign_key: true
-      
-      t.string :code,            null: false, index: true
-      t.string :name,            null: false, index: true
-      t.string :name_kana,                    index: true
-      t.string :name_alphabet,                index: true
+
+      t.datetime :deleted_at,                   index: true
+      t.string   :code,            null: false, index: true
+      t.string   :name,            null: false, index: true
+      t.string   :name_kana,       null: false, index: true
+      t.string   :name_alphabet,   null: false, index: true
+
+      t.timestamps index: true
     end
   end
 end

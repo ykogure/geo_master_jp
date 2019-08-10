@@ -1,0 +1,10 @@
+class CreateVersions < ActiveRecord::Migration<%= migration_version %>
+  def change
+    create_table :geo_master_jp_versions do |t|
+      t.string :model_name_string, null: false, index: true
+      t.date   :version,           null: false, index: true
+
+      t.timestamps index: true
+    end
+  end
+end
