@@ -1,0 +1,11 @@
+class CreateStationConnections < ActiveRecord::Migration<%= migration_version %>
+  def change
+    create_table :geo_master_jp_station_connections do |t|
+      t.references :geo_master_jp_line,      null: false, index: true, foreign_key: true
+      t.references :geo_master_jp_station_1, null: false, index: {name: :index_geo_master_jp_station_connections_on_station_1_id}, foreign_key: { to_table: :geo_master_jp_stations }
+      t.references :geo_master_jp_station_2, null: false, index: {name: :index_geo_master_jp_station_connections_on_station_2_id}, foreign_key: { to_table: :geo_master_jp_stations }
+
+      t.timestamps index: true
+    end
+  end
+end

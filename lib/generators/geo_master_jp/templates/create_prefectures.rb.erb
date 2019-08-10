@@ -6,6 +6,8 @@ class CreatePrefectures < ActiveRecord::Migration<%= migration_version %>
       t.string :name_kana,     index: true, null: false
       t.string :name_alphabet, index: true, null: false
       t.string :short_name,    index: true, null: false
+
+      t.timestamps index: true
     end
   end
 end

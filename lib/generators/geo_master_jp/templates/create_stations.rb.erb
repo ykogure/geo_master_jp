@@ -1,0 +1,25 @@
+class CreateStations < ActiveRecord::Migration<%= migration_version %>
+  def change
+    create_table :geo_master_jp_stations do |t|
+      t.references :geo_master_jp_line,       null: false, index: true, foreign_key: true
+      t.references :geo_master_jp_prefecture, null: false, index: true, foreign_key: true
+
+      t.string  :status,          null: false, index: true
+      t.string  :code,            null: false, index: true
+      t.string  :group_code,      null: false, index: true
+      t.string  :name,            null: false, index: true
+      # t.string  :name_kana,       null: false, index: true
+      # t.string  :name_full,       null: false, index: true
+      t.string  :zip_code,        null: false, index: true
+      t.string  :address,         null: false, index: true
+      t.float   :longitude,       null: false, index: true
+      t.float   :latitude,        null: false, index: true
+      t.date    :open_date,                    index: true
+      t.date    :close_date,                   index: true
+
+      t.integer :sort_order,      null: false, index: true
+
+      t.timestamps index: true
+    end
+  end
+end
