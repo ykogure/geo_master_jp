@@ -10,9 +10,9 @@ module GeoMasterJp
 
       desc "Creates a Geo Master Jp initializer to your application."
 
-      # def copy_initializer
-      #   template "gtm_on_rails.rb", "config/initializers/gtm_on_rails.rb"
-      # end
+      def copy_initializer
+        template "geo_master_jp.rb", "config/initializers/geo_master_jp.rb"
+      end
 
       # def insert_javascript_tag
       #   inject_into_file "app/views/layouts/application.html.erb", after: /<head[\s]?[^>]*>/ do

@@ -1,7 +1,8 @@
 require 'zip'
 require 'open-uri'
 require 'yaml'
-require "romaji"
+require 'romaji'
+require 'nkf'
 
 module GeoMasterJp
   module Generators
@@ -106,7 +107,7 @@ module GeoMasterJp
 
         def set_city(city, row)
           city.name = row[10]
-          city.name_kana = row[6]
+          city.name_kana = row[6].present? ? NKF.nkf("-Xw", row[6]) : ''
           city.name_alphabet = Romaji.kana2romaji(city.name_kana)
 
           city
@@ -114,7 +115,7 @@ module GeoMasterJp
 
         def set_town(town, row)
           town.name = row[11] + row[12]
-          town.name_kana = row[7] + row[8]
+          town.name_kana = (row[7] + row[8]).present? ? NKF.nkf("-Xw", row[7] + row[8]) : ''
           town.name_alphabet = Romaji.kana2romaji(town.name_kana)
           town.zip_code = row[2]
           town.deleted_at = Time.current if row[26] == '3' # 廃止
