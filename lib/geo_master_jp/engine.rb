@@ -1,4 +1,14 @@
 require 'geo_master_jp/config'
+module GeoMasterJp
+  def self.config
+    @config ||= GeoMasterJp::Config.new
+  end
+
+  def self.configure(&block)
+    yield(config) if block_given?
+  end
+end
+
 require 'geo_master_jp/models/prefecture'
 require 'geo_master_jp/models/city'
 require 'geo_master_jp/models/town'
@@ -11,12 +21,3 @@ require 'geo_master_jp/models/version'
 require 'active_record'
 require 'activerecord-import'
 
-module GeoMasterJp
-  def self.config
-    @config ||= GeoMasterJp::Config.new
-  end
-
-  def self.configure(&block)
-    yield(config) if block_given?
-  end
-end
