@@ -1,3 +1,6 @@
+# WIP
+This gem is WIP!
+
 # GeoMasterJp
 Short description and motivation.
 
