@@ -6,6 +6,7 @@
 vendor/bundle
 
 log/*.log
+pkg/
 
 /test/dummy/
 # test/dummy/log/*.log
