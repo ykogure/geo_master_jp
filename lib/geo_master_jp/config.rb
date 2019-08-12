@@ -6,5 +6,9 @@ module GeoMasterJp
     def initialize
       @alternative_class_names = {}
     end
+
+    def alternative_class_name(key)
+      @alternative_class_names[key] || "GeoMasterJp::#{key.to_s.camelize}"
+    end
   end
 end
