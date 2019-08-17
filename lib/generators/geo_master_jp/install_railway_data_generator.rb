@@ -155,7 +155,7 @@ module GeoMasterJp
         end
 
         def set_station(station, row)
-          station.geo_master_jp_prefecture_id = row[6].to_i
+          station.geo_master_jp_prefecture_code = format('%02d', row[6].to_i)
 
           station.status     = row[13].to_i
           station.code       = format('%07d', row[0].to_i)

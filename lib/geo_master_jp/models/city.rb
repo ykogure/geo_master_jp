@@ -2,8 +2,8 @@ module GeoMasterJp
   class City < ActiveRecord::Base
     self.table_name = 'geo_master_jp_cities'
 
-    belongs_to :prefecture, class_name: 'GeoMasterJp::Prefecture', foreign_key: :geo_master_jp_prefecture_id
-    has_many :towns, class_name: 'GeoMasterJp::Town', foreign_key: :geo_master_jp_city_id
+    belongs_to :prefecture, class_name: 'GeoMasterJp::Prefecture', foreign_key: :geo_master_jp_prefecture_code, primary_key: :code
+    has_many   :towns,      class_name: 'GeoMasterJp::Town',       foreign_key: :geo_master_jp_city_code,       primary_key: :code
 
     def head_kana
       return '' if self.name_kana.blank?
@@ -12,8 +12,8 @@ module GeoMasterJp
     end
 
     def self.inherited(child)
-      child.belongs_to :prefecture, class_name: GeoMasterJp.config.alternative_class_name(:prefecture), foreign_key: :geo_master_jp_prefecture_id
-      child.has_many :towns, class_name: GeoMasterJp.config.alternative_class_name(:town), foreign_key: :geo_master_jp_city_id
+      child.belongs_to :prefecture, class_name: GeoMasterJp.config.alternative_class_name(:prefecture), foreign_key: :geo_master_jp_prefecture_code, primary_key: :code
+      child.has_many   :towns,      class_name: GeoMasterJp.config.alternative_class_name(:town),       foreign_key: :geo_master_jp_city_code,       primary_key: :code
 
       super
     end

@@ -1,8 +1,8 @@
 class CreateTowns < ActiveRecord::Migration<%= migration_version %>
   def change
     create_table :geo_master_jp_towns do |t|
-      t.references :geo_master_jp_prefecture, null: false, index: true, foreign_key: true
-      t.references :geo_master_jp_city,       null: false, index: true, foreign_key: true
+      t.string :geo_master_jp_prefecture_code, null: false, index: true, foreign_key: true
+      t.string :geo_master_jp_city_code,       null: false, index: true, foreign_key: true
 
       t.datetime :deleted_at,                   index: true
       t.string   :zip_code,        null: false, index: true
@@ -13,5 +13,7 @@ class CreateTowns < ActiveRecord::Migration<%= migration_version %>
 
       t.timestamps index: true
     end
+    add_foreign_key :geo_master_jp_towns, :geo_master_jp_prefectures, column: :geo_master_jp_prefecture_code, primary_key: :code
+    add_foreign_key :geo_master_jp_towns, :geo_master_jp_cities,      column: :geo_master_jp_city_code,       primary_key: :code
   end
 end

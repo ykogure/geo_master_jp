@@ -68,7 +68,7 @@ module GeoMasterJp
                   town.update!(deleted_at: Time.current)
                 end
               else # 新規
-                town = city.towns.build(geo_master_jp_prefecture_id: prefecture.id, code: town_code)
+                town = city.towns.build(geo_master_jp_prefecture_code: prefecture.code, code: town_code)
                 town = set_town(town, town_row)
                 town.city = city
 

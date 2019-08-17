@@ -1,7 +1,7 @@
 class CreateLines < ActiveRecord::Migration<%= migration_version %>
   def change
     create_table :geo_master_jp_lines do |t|
-      t.references :geo_master_jp_railway_company, null: false, index: true, foreign_key: true
+      t.string :geo_master_jp_railway_company_code, null: false, index: true, foreign_key: true
 
       t.string  :status,          null: false, index: true
       # t.integer :type,            null: false, index: true
@@ -18,5 +18,6 @@ class CreateLines < ActiveRecord::Migration<%= migration_version %>
 
       t.timestamps index: true
     end
+    add_foreign_key :geo_master_jp_lines, :geo_master_jp_railway_companies, column: :geo_master_jp_railway_company_code, primary_key: :code
   end
 end

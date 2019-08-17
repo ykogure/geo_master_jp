@@ -1,11 +1,14 @@
 class CreateStationConnections < ActiveRecord::Migration<%= migration_version %>
   def change
     create_table :geo_master_jp_station_connections do |t|
-      t.references :geo_master_jp_line,      null: false, index: true, foreign_key: true
-      t.references :geo_master_jp_station_1, null: false, index: {name: :index_geo_master_jp_station_connections_on_station_1_id}, foreign_key: { to_table: :geo_master_jp_stations }
-      t.references :geo_master_jp_station_2, null: false, index: {name: :index_geo_master_jp_station_connections_on_station_2_id}, foreign_key: { to_table: :geo_master_jp_stations }
+      t.string :geo_master_jp_line_code,      null: false, index: {name: :index_geo_master_jp_station_connections_on_line_code},      foreign_key: true
+      t.string :geo_master_jp_station_1_code, null: false, index: {name: :index_geo_master_jp_station_connections_on_station_1_code}, foreign_key: {to_table: :geo_master_jp_stations}
+      t.string :geo_master_jp_station_2_code, null: false, index: {name: :index_geo_master_jp_station_connections_on_station_2_code}, foreign_key: {to_table: :geo_master_jp_stations}
 
       t.timestamps index: true
     end
+    add_foreign_key :geo_master_jp_station_connections, :geo_master_jp_lines,    column: :geo_master_jp_line_code,      primary_key: :code
+    add_foreign_key :geo_master_jp_station_connections, :geo_master_jp_stations, column: :geo_master_jp_station_1_code, primary_key: :code
+    add_foreign_key :geo_master_jp_station_connections, :geo_master_jp_stations, column: :geo_master_jp_station_2_code, primary_key: :code
   end
 end
