@@ -28,7 +28,13 @@ module GeoMasterJp
       end
 
       def create_migration_file
-        templates = ['create_prefectures', 'create_cities', 'create_towns', 'create_railway_companies', 'create_lines', 'create_stations', 'create_station_connections', 'create_versions']
+        templates = ['create_versions']
+        if GeoMasterJp.config.use_models.include?(:area)
+          templates += ['create_prefectures', 'create_cities', 'create_towns', 'create_versions']
+        end
+        if GeoMasterJp.config.use_models.include?(:railway)
+          templates += ['create_prefectures', 'create_cities', 'create_towns', 'create_railway_companies', 'create_lines', 'create_stations', 'create_station_connections']
+        end
 
         migration_dir = File.expand_path("db/migrate")
         templates.each do |template|

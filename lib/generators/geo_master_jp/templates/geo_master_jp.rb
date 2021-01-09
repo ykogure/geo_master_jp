@@ -9,4 +9,7 @@ GeoMasterJp.configure do |config|
   #   station:            'Station',
   #   station_connection: 'StationConnection'
   # }
+
+  # Use Models
+  # config.use_models = [:area, :railway]
 end
