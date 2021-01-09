@@ -95,9 +95,9 @@ module GeoMasterJp
           url = "https://www.japan-database.jp/database/addressfc#{VERSION[0..5]}.zip"
 
           csv_data = nil
-          open(URI.escape(url)) do |file|
+          open(url) do |file|
             Zip::File.open_buffer(file.read) do |zip|
-              entry = zip.glob('addressf201905.csv').first
+              entry = zip.glob("addressf#{VERSION[0..5]}.csv").first
               csv_data = entry.get_input_stream.read
             end
           end
