@@ -7,7 +7,7 @@ require 'nkf'
 module GeoMasterJp
   module Generators
     class InstallAreaDataGenerator < Rails::Generators::Base
-      VERSION = '20190501'
+      VERSION = '20201101'
 
       source_root File.expand_path('templates', __dir__)
 
@@ -92,7 +92,7 @@ module GeoMasterJp
       private
 
         def download_city_and_town_data_and_convert_to_csv
-          url = "https://www.japan-database.jp/database/#{VERSION[0..3]}/addressfc#{VERSION[0..-3]}.zip"
+          url = "https://www.japan-database.jp/database/addressfc#{VERSION[0..5]}.zip"
 
           csv_data = nil
           open(URI.escape(url)) do |file|
