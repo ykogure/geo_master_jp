@@ -3,7 +3,7 @@ require "rails/generators/active_record"
 
 module GeoMasterJp
   module Generators
-    class InstallGenerator < Rails::Generators::Base
+    class InstallMigrationGenerator < Rails::Generators::Base
       include ::Rails::Generators::Migration
 
       source_root File.expand_path('templates', __dir__)
