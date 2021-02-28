@@ -24,6 +24,27 @@ Or install it yourself as:
 $ gem install geo_master_jp
 ```
 
+## Initialize
+### Create Config File
+```bash
+rails g geo_master_jp:install
+```
+
+### Create Migration Files
+```bash
+rails g geo_master_jp:install_migration
+```
+
+### Import Area Data
+```bash
+rails g geo_master_jp:install_area_data
+```
+
+### Import Railway Data
+```bash
+rails g geo_master_jp:install_railway_data
+```
+
 ## Contributing
 Contribution directions go here.
 
