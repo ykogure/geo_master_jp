@@ -1,11 +1,11 @@
-FROM ruby:2.5.1
-ENV LANG=C.UTF-8 \
-    DEBIAN_FRONTEND=noninteractive \
-    ENTRYKIT_VERSION=0.4.0
+FROM ruby:slim-bullseye as base
 
-RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
-RUN apt-get update -qq && \
-    apt-get install -y build-essential nodejs
+RUN apt update
+RUN apt install -y \
+    tzdata \
+    build-essential \
+    libmysqld-dev \
+    git
 
 RUN mkdir /app
 WORKDIR /app

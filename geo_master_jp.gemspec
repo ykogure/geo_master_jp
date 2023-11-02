@@ -25,7 +25,7 @@ Gem::Specification.new do |spec|
 
   spec.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
-  spec.add_runtime_dependency "rails", "~> 6"
+  spec.add_runtime_dependency "rails", "~> 7"
   spec.add_runtime_dependency "rubyzip"
   spec.add_runtime_dependency "romaji"
   spec.add_runtime_dependency "activerecord-import"
