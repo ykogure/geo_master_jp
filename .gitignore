@@ -7,6 +7,7 @@
 .ssh
 .gitconfig
 .viminfo
+.bash_history
 vendor/bundle
 
 log/*.log

@@ -17,5 +17,9 @@ module GeoMasterJp
 
       super
     end
+
+    def town_select_options
+      self.towns.map{|town| [town.name, town.code] }
+    end
   end
 end
