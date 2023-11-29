@@ -7,7 +7,7 @@ module GeoMasterJp
         prefectures: prefectures.map{|prefecture|
           prefecture.as_json(only: [:code, :name, :name_kana, :name_alphabet, :short_name])
         },
-        initials: prefectures.group_by(&:head_kana).sort_by(&:first).to_h
+        initials: prefectures.sort_by(&:name_kana).group_by(&:head_kana).sort_by(&:first).to_h
       }
     end
 
@@ -24,7 +24,7 @@ module GeoMasterJp
         cities: cities.map{|city|
           city.as_json(only: [:code, :name, :name_kana, :name_alphabet, :short_name])
         },
-        initials: cities.group_by(&:head_kana).sort_by(&:first).to_h
+        initials: cities.sort_by(&:name_kana).group_by(&:head_kana).sort_by(&:first).to_h
       }
     end
 
@@ -41,7 +41,7 @@ module GeoMasterJp
         towns: towns.map{|town|
           town.as_json(only: [:zip_code, :code, :name, :name_kana, :name_alphabet, :short_name])
         },
-        initials: towns.group_by(&:head_kana).sort_by(&:first).to_h
+        initials: towns.sort_by(&:name_kana).group_by(&:head_kana).sort_by(&:first).to_h
       }
     end
   end
