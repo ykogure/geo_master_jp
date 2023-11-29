@@ -1,4 +1,5 @@
 require "geo_master_jp/railtie"
+require "geo_master_jp/config"
 require "geo_master_jp/engine"
 require "geo_master_jp/association_helper"
 
