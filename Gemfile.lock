@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    geo_master_jp (0.1.27)
+    geo_master_jp (0.1.28)
       activerecord-import
       rails (~> 7)
       romaji

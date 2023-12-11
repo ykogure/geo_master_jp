@@ -9,15 +9,20 @@ module GeoMasterJp
 
   class Config
     # Variables detail is writen in lib/generators/templates/geo_master_jp.rb.
-    attr_accessor :alternative_class_names, :use_models
+    attr_accessor :alternative_class_names, :use_models, :api
 
     def initialize
       @alternative_class_names = {}
       @use_models = [:area, :railway]
+      @api = API.new
     end
 
     def alternative_class_name(key)
       @alternative_class_names[key] || "GeoMasterJp::#{key.to_s.camelize}"
+    end
+
+    class API
+      attr_accessor :prefectures_filter, :cities_filter, :towns_filter
     end
   end
 end
