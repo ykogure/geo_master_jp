@@ -22,8 +22,8 @@ module GeoMasterJp
       self.cities.map{|city| [city.name, city.code] }
     end
 
-    def self.select_options
-      self.all.map{|prefecture| [prefecture.name, prefecture.code] }
+    def self.select_options(transactions=nil)
+      (transactions || all).map{|prefecture| [prefecture.name, prefecture.code] }
     end
   end
 end
