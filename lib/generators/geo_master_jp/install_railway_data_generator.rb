@@ -5,10 +5,10 @@ require 'yaml'
 module GeoMasterJp
   module Generators
     class InstallRailwayDataGenerator < Rails::Generators::Base
-      RAILWAY_COMPANY_VERSION    = '20180424'
-      LINE_VERSION               = '20190405'
-      STATION_VERSION            = '20190405'
-      STATION_CONNECTION_VERSION = '20190405'
+      RAILWAY_COMPANY_VERSION    = '20240328'
+      LINE_VERSION               = '20240426'
+      STATION_VERSION            = '20240426'
+      STATION_CONNECTION_VERSION = '20240426'
 
       source_root File.expand_path('templates', __dir__)
 
