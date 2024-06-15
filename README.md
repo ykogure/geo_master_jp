@@ -45,6 +45,8 @@ rails g geo_master_jp:install_area_data
 rails g geo_master_jp:install_railway_data
 ```
 
+*Area data is required as a prerequisite.
+
 ## Usage
 
 ### Use Area Data Examples
