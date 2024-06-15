@@ -5,10 +5,10 @@ require 'yaml'
 module GeoMasterJp
   module Generators
     class InstallRailwayDataGenerator < Rails::Generators::Base
-      RAILWAY_COMPANY_VERSION    = '20180424'
-      LINE_VERSION               = '20190405'
-      STATION_VERSION            = '20190405'
-      STATION_CONNECTION_VERSION = '20190405'
+      RAILWAY_COMPANY_VERSION    = '20240328'
+      LINE_VERSION               = '20240426'
+      STATION_VERSION            = '20240426'
+      STATION_CONNECTION_VERSION = '20240426'
 
       source_root File.expand_path('templates', __dir__)
 
@@ -165,8 +165,8 @@ module GeoMasterJp
           station.address    = row[8].gsub('-', '')
           station.longitude  = row[9]
           station.latitude   = row[10]
-          station.open_date  = Date.parse(row[11]) if row[11].present?
-          station.close_date = Date.parse(row[12]) if row[12].present?
+          station.open_date  = Date.parse(row[11]) if row[11].present? && row[11] != '0000-00-00'
+          station.close_date = Date.parse(row[12]) if row[12].present? && row[12] != '0000-00-00'
           station.sort_order = row[14].to_i
 
           station
