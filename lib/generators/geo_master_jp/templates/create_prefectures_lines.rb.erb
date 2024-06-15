@@ -1,8 +1,8 @@
 class CreatePrefecturesLines < ActiveRecord::Migration<%= migration_version %>
   def change
     create_table :geo_master_jp_prefectures_lines do |t|
-      t.string :geo_master_jp_line_code,       null: false, index: true, foreign_key: true
-      t.string :geo_master_jp_prefecture_code, null: false, index: true, foreign_key: true
+      t.string :geo_master_jp_line_code,       null: false, index: {name: :index_geo_master_jp_prefectures_lines_on_line_code}, foreign_key: true
+      t.string :geo_master_jp_prefecture_code, null: false, index: {name: :index_geo_master_jp_prefectures_lines_on_prefecture_code}, foreign_key: true
 
       t.timestamps index: true
     end
