@@ -8,6 +8,8 @@
 .gitconfig
 .viminfo
 .bash_history
+.irb_history
+.local
 vendor/bundle
 
 log/*.log
@@ -19,3 +21,5 @@ pkg/
 # test/dummy/yarn-error.log
 # test/dummy/storage/
 # test/dummy/tmp/
+
+.history

@@ -1,0 +1,12 @@
+class CreatePrefecturesLines < ActiveRecord::Migration<%= migration_version %>
+  def change
+    create_table :geo_master_jp_prefectures_lines do |t|
+      t.string :geo_master_jp_line_code,       null: false, index: true, foreign_key: true
+      t.string :geo_master_jp_prefecture_code, null: false, index: true, foreign_key: true
+
+      t.timestamps index: true
+    end
+    add_foreign_key :geo_master_jp_prefectures_lines, :geo_master_jp_lines,       column: :geo_master_jp_line_code,       primary_key: :code
+    add_foreign_key :geo_master_jp_prefectures_lines, :geo_master_jp_prefectures, column: :geo_master_jp_prefecture_code, primary_key: :code
+  end
+end

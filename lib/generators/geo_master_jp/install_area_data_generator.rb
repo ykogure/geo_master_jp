@@ -19,7 +19,7 @@ module GeoMasterJp
           return
         end
         YAML.load_file("#{__dir__}/data/prefectures.yml").each do |prefecture|
-          GeoMasterJp::Prefecture.create(prefecture)
+          GeoMasterJp::Prefecture.create!(prefecture)
         end
 
         puts "Set Prefecture is complete."
@@ -45,13 +45,13 @@ module GeoMasterJp
               if town_rows[0][26] == '2' # 変更
                 city = set_city(city, town_rows[0])
 
-                city.save
+                city.save!
               end
             else # 新規
               city = prefecture.cities.build(code: city_code)
               city = set_city(city, town_rows[0])
 
-              city.save
+              city.save!
             end
 
             towns[city.code] = []
@@ -63,7 +63,7 @@ module GeoMasterJp
                   town = set_town(town, row)
                   town.city = city
 
-                  town.save
+                  town.save!
                 elsif town_row[26] == '3' # 廃止
                   town.update!(deleted_at: Time.current)
                 end

@@ -50,9 +50,5 @@ module GeoMasterJp
         initials: towns.sort_by(&:name_kana).group_by(&:head_kana).sort_by(&:first).to_h
       }
     end
-
-    def self.aaa(text)
-      puts text
-    end
   end
 end
