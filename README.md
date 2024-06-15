@@ -74,6 +74,12 @@ Then you can use the following API:
 - `/geo_master_jp/api/prefectures`
 - `/geo_master_jp/api/cities?prefecture_code=13`
 - `/geo_master_jp/api/towns?city_code=13104`
+- `/geo_master_jp/api/railway_companies`
+- `/geo_master_jp/api/lines?prefecture_code=13`
+- `/geo_master_jp/api/lines?railway_company_code=002`
+- `/geo_master_jp/api/stations?line_code=11302`
+- `/geo_master_jp/api/stations?line_code=11302&prefecture_code=13`
+- `/geo_master_jp/api/same_stations?same_stations=1130225`
 
 ## Contributing
 Contribution directions go here.

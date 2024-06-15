@@ -24,7 +24,7 @@ module GeoMasterJp
         csv_data.each do |row|
           railway_company = GeoMasterJp::RailwayCompany.find_by(code: format('%03d', row[0].to_i)) || GeoMasterJp::RailwayCompany.new
           railway_company = set_railway_company(railway_company, row)
-          railway_company.save
+          railway_company.save!
         end
 
         GeoMasterJp::Version.create!(model_name_string: GeoMasterJp::RailwayCompany.to_s, version: Date.parse(RAILWAY_COMPANY_VERSION))
@@ -48,7 +48,7 @@ module GeoMasterJp
           rows.each do |row|
             line = GeoMasterJp::Line.find_by(code: format('%05d', row[0].to_i)) || railway_company.lines.build
             line = set_line(line, row)
-            line.save
+            line.save!
           end
         end
 
@@ -73,7 +73,7 @@ module GeoMasterJp
           rows.each do |row|
             station = GeoMasterJp::Station.find_by(code: format('%07d', row[0].to_i)) || line.stations.build
             station = set_station(station, row)
-            station.save
+            station.save!
           end
         end
 
@@ -89,25 +89,31 @@ module GeoMasterJp
           return
         end
 
+        # 接続にはステータスがないため、全削除して再登録
+        GeoMasterJp::StationConnection.delete_all
+
         csv_data = get_railway_data("join#{STATION_CONNECTION_VERSION}.csv")
 
         csv_data_each_line_code = csv_data.group_by{|row| format('%05d', row[0].to_i)}
         csv_data_each_line_code.each_with_index do |(line_code, rows), idx|
           print "Setting StationConnection ...#{idx+1}/#{csv_data_each_line_code.count}\r"
 
-          line = GeoMasterJp::Line.find_by(code: line_code)
           rows.each do |row|
-            station_1 = GeoMasterJp::Station.find_by(code: format('%07d', row[1].to_i))
-            station_2 = GeoMasterJp::Station.find_by(code: format('%07d', row[2].to_i))
+            station_1_code = format('%07d', row[1].to_i)
+            station_2_code = format('%07d', row[2].to_i)
 
-            next if station_1.blank? || station_2.blank?
+            next if GeoMasterJp::Station.find_by(code: station_1_code).blank? || GeoMasterJp::Station.find_by(code: station_2_code).blank?
 
-            station_connection = GeoMasterJp::StationConnection.new
-            station_connection.line = line
-            station_connection.station_1 = station_1
-            station_connection.station_2 = station_2
-
-            station_connection.save
+            station_connection = GeoMasterJp::StationConnection.new(
+              geo_master_jp_line_code: line_code,
+              geo_master_jp_station_1_code: station_1_code,
+              geo_master_jp_station_2_code: station_2_code,
+            ).save!
+            station_connection = GeoMasterJp::StationConnection.new(
+              geo_master_jp_line_code: line_code,
+              geo_master_jp_station_1_code: station_2_code,
+              geo_master_jp_station_2_code: station_1_code,
+            ).save!
           end
         end
 
@@ -115,6 +121,30 @@ module GeoMasterJp
 
         print "\n"
         puts "Set StationConnection is complete."
+      end
+
+      def set_prefectures_lines
+        return unless GeoMasterJp.config.use_models.include?(:area)
+        if GeoMasterJp::Prefecture.count == 0
+          puts "PrefectureLines is skipped as Prefecture is not imported."
+          return
+        end
+
+        if GeoMasterJp::Version.last_version('GeoMasterJp::PrefecturesLine').present? && GeoMasterJp::Version.last_version(GeoMasterJp::Line) >= Date.parse(LINE_VERSION)
+          puts "PrefectureLines is already latest version and skip."
+          return
+        end
+
+        GeoMasterJp::Line.all.each_with_index do |line, idx|
+          print "Setting PrefecturesLine ...#{idx+1}/#{GeoMasterJp::Line.count}\r"
+          prefecture_codes = line.stations.group(:geo_master_jp_prefecture_code).pluck(:geo_master_jp_prefecture_code)
+          prefecture_codes.each {|prefecture_code| line.prefectures_lines.create(geo_master_jp_prefecture_code: prefecture_code)}
+        end
+
+        GeoMasterJp::Version.create!(model_name_string: 'GeoMasterJp::PrefecturesLine', version: Date.parse(LINE_VERSION))
+
+        print "\n"
+        puts "Set PrefecturesLine is complete."
       end
 
       private

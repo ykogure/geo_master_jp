@@ -13,6 +13,9 @@ GeoMasterJp.configure do |config|
   # Use Models
   # config.use_models = [:area, :railway]
 
+  # Use APIs
+  # config.use_apis = [:area, :railway]
+
   # API Filters
   # config.api.prefectures_filter = ->(prefectures) {
   #   prefecture_codes = ['11', '12', '13', '14']
