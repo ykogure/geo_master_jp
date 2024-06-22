@@ -51,7 +51,7 @@ module GeoMasterJp
         }, status: 400
       end
 
-      stations = GeoMasterJp::Line.find_by(code: params[:line_code]).stations.left_outer_joins(:station_connections)
+      stations = GeoMasterJp::Line.find_by(code: params[:line_code]).stations.includes(:station_connections)
 
       if params[:prefecture_code].present?
         stations = stations.where(geo_master_jp_prefecture_code: params[:prefecture_code])
