@@ -34,6 +34,22 @@ module GeoMasterJp
       self.cities.map{|city| [city.name, city.code] }
     end
 
+    def city_grouped_select_options
+      self.cities.group_by(&:head_kana).map do |head_kana, cities|
+        [head_kana, cities.map{|city| [city.name, city.code] }]
+      end.sort_by{|head_kana, _| head_kana }
+    end
+
+    def line_select_options
+      self.lines.map{|line| [line.name, line.code] }
+    end
+
+    def line_grouped_select_options
+      self.lines.group_by(&:head_kana).map do |head_kana, lines|
+        [head_kana, lines.map{|line| [line.name, line.code] }]
+      end.sort_by{|head_kana, _| head_kana }
+    end
+
     def self.select_options(transactions=nil)
       (transactions || all).map{|prefecture| [prefecture.name, prefecture.code] }
     end
