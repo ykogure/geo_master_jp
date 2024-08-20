@@ -21,5 +21,11 @@ module GeoMasterJp
     def town_select_options
       self.towns.map{|town| [town.name, town.code] }
     end
+
+    def town_grouped_select_options
+      self.towns.group_by(&:head_kana).map do |head_kana, towns|
+        [head_kana, towns.map{|town| [town.name, town.code] }]
+      end.sort_by{|head_kana, _| head_kana }
+    end
   end
 end
